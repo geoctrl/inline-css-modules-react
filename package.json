@@ -1,0 +1,21 @@
+{
+  "name": "inline-css-modules-react",
+  "version": "0.0.1",
+  "main": "public/bundle.js",
+  "type": "module",
+  "scripts": {
+    "start": "rollup -c"
+  },
+  "author": "Tony Lefler <tony.lefler@canopytax.com>",
+  "license": "MIT",
+  "devDependencies": {
+    "@rollup/plugin-babel": "^6.0.3",
+    "prettier": "^2.8.4",
+    "react": "^18.2.0",
+    "rollup": "^3.18.0"
+  },
+  "peerDependencies": {
+    "react": ">=18"
+  },
+  "dependencies": {}
+}
