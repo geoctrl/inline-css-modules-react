@@ -6,15 +6,19 @@ const styleRef = {};
 export function useCssModules(cssModuleObject) {
   if (
     typeof cssModuleObject !== "object" ||
-    !cssModuleObject.styles ||
-    !cssModuleObject.id
+    !cssModuleObject.hasOwnProperty("styles") ||
+    !cssModuleObject.hasOwnProperty("id")
   ) {
     throw new Error(
-      `[useCssModules] requires an object with structure: { styles: string; id: string; }.
+      `4[useCssModules] requires an object with structure: { styles: string; id: string; }.
       Ensure babel plugin "babel-plugin-css-to-module" is properly installed and configured, and the template literal tag "cssModules" is set.
       Read more:
       https://github.com/geoctrl/babel-plugin-css-to-modules`
     );
+  }
+
+  if (!cssModuleObject.id || !cssModuleObject.styles) {
+    return;
   }
 
   const { styles, id } = cssModuleObject;
@@ -52,5 +56,5 @@ export const cssModules = (strings, ...args) => {
     const classNames = JSON.parse(classNameObject);
     return { style: classNames, s: classNames, css: { styles, id } };
   }
-  return evalString;
+  return { style: {}, s: {}, css: { styles: "", id: "" } };
 };
