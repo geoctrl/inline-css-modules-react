@@ -1,4 +1,4 @@
-import { useEffect } from "react";
+import { useLayoutEffect } from "react";
 const separator = "||CSS_MODULES||";
 
 const styleRef = {};
@@ -22,7 +22,7 @@ export function useCssModules(cssModuleObject) {
   }
 
   const { styles, id } = cssModuleObject;
-  useEffect(() => {
+  useLayoutEffect(() => {
     if (styleRef[id]) {
       styleRef[id].instances += 1;
     } else {
