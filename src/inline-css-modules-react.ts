@@ -1,6 +1,13 @@
 import { useLayoutEffect } from "react";
-const separator = "||CSS_MODULES||";
 
+type CssModuleObj = {
+  style: {};
+  s: {};
+  styles: {};
+  css: { styles: ""; id: "" };
+};
+
+const separator = "||CSS_MODULES||";
 const styleRef = {};
 
 export function useCssModules(cssModuleObject) {
@@ -10,19 +17,18 @@ export function useCssModules(cssModuleObject) {
     !cssModuleObject.hasOwnProperty("id")
   ) {
     throw new Error(
-      `4[useCssModules] requires an object with structure: { styles: string; id: string; }.
+      `[useCssModules] requires an object with structure: { styles: string; id: string; }.
       Ensure babel plugin "babel-plugin-css-to-module" is properly installed and configured, and the template literal tag "cssModules" is set.
       Read more:
-      https://github.com/geoctrl/babel-plugin-css-to-modules`
+      https://github.com/geoctrl/babel-plugin-css-to-modules`,
     );
-  }
-
-  if (!cssModuleObject.id || !cssModuleObject.styles) {
-    return;
   }
 
   const { styles, id } = cssModuleObject;
   useLayoutEffect(() => {
+    if (!cssModuleObject.id || !cssModuleObject.styles) {
+      return;
+    }
     if (styleRef[id]) {
       styleRef[id].instances += 1;
     } else {
@@ -54,7 +60,12 @@ export const cssModules = (strings, ...args) => {
   const [id, classNameObject, styles] = evalString.split(separator);
   if (id && classNameObject && styles) {
     const classNames = JSON.parse(classNameObject);
-    return { style: classNames, s: classNames, css: { styles, id } };
+    return {
+      style: classNames,
+      s: classNames,
+      styles: classNames,
+      css: { styles, id },
+    };
   }
-  return { style: {}, s: {}, css: { styles: "", id: "" } };
+  return { style: {}, s: {}, styles: {}, css: { styles: "", id: "" } };
 };
