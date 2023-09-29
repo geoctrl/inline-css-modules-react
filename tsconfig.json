@@ -10,7 +10,8 @@
     ],
     "moduleResolution": "node",
     "declaration": true,
-    "allowJs": true
+    "allowJs": true,
+    "jsx": "react"
   },
   "include": [
     "src",

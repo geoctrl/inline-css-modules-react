@@ -122,7 +122,7 @@ language injection and can easily be setup to give you full syntax highlighting
 1. Go to intellij's `Settings`, and choose `Editor` > `Language Injections` 
 2. Press the `+` button and choose `JS Tagged Literal Injection`
 3. Name your new injection setting to something memorable, like `cssModules`
-4. Set your "Language ID" to `CSS` (or `SASS` if your using that)
+4. Set your "Language ID" to `CSS` (or `SASS` if you're using that)
 5. Set "Places Patterns" to `+ taggedString("cssModules")`
 6. Leave all other options empty and click "OK"
 7. Enjoy css-in-js like a boss
