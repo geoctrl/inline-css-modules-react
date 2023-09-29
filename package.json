@@ -1,6 +1,6 @@
 {
   "name": "inline-css-modules-react",
-  "version": "0.0.5",
+  "version": "0.1.0",
   "main": "dist/inline-css-modules-react.umd.js",
   "module": "dist/inline-css-modules-react.esm.js",
   "type": "module",

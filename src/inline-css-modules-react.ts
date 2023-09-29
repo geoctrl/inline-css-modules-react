@@ -1,16 +1,19 @@
 import { useLayoutEffect } from "react";
 
-type CssModuleObj = {
-  style: {};
-  s: {};
-  styles: {};
-  css: { styles: ""; id: "" };
+type CssModuleObj = Record<string, string>;
+type CssUsage = { styles: string; id: string };
+
+type CssModuleBuilt = {
+  style: CssModuleObj;
+  styles: CssModuleObj;
+  s: CssModuleObj;
+  css: CssUsage;
 };
 
 const separator = "||CSS_MODULES||";
 const styleRef = {};
 
-export function useCssModules(cssModuleObject) {
+export function useCssModules(cssModuleObject: CssUsage): void {
   if (
     typeof cssModuleObject !== "object" ||
     !cssModuleObject.hasOwnProperty("styles") ||
@@ -50,7 +53,10 @@ export function useCssModules(cssModuleObject) {
   }, [cssModuleObject.styles]);
 }
 
-export const cssModules = (strings, ...args) => {
+export const cssModules = (
+  strings: TemplateStringsArray,
+  ...args: unknown[]
+): CssModuleBuilt => {
   const evalString = strings
     .map((item, i) => {
       return `${item}${args[i] || ""}`;
@@ -67,5 +73,14 @@ export const cssModules = (strings, ...args) => {
       css: { styles, id },
     };
   }
-  return { style: {}, s: {}, styles: {}, css: { styles: "", id: "" } };
+  console.error(
+    `[inline-css-modules-react] package requires the "babel-plugin-css-to-module" to be installed.
+learn more at: https://github.com/geoctrl/babel-plugin-css-to-module`,
+  );
+  return {
+    style: {},
+    s: {},
+    styles: {},
+    css: { styles: "", id: "" },
+  };
 };
